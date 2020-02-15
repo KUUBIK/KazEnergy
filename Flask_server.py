@@ -11,12 +11,9 @@ while True:
     headers = {'Content-type': 'application/json',
                'Accept': 'text/plain',
                'Content-Encoding': 'utf-8'}
-    data = {
-        "Бак":"Исправен",
-        "Номер машины":"1",
-        "Неисправности":"Невыяленно"
-    }
 
-    answer = requests.post(url, data = json.dumps(data))
+
+
+    answer = requests.post(url)
     print(answer)
     time.sleep(1)
