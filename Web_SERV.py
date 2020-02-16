@@ -8,7 +8,7 @@ from flask_pymongo import PyMongo
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/myDatabase"
 mongo = PyMongo(app)
-
+db = mongo.db.data
 
 dataToCar = good_car = {
     "id":1,
@@ -22,12 +22,12 @@ def index():
     if request.method == 'POST':
         name = request.form['uname']
         passw = request.form['passw']
-        db = mongo.db.data
-        db.insert(dataToCar)
-        print(db)
+        # db = mongo.db.data
+        # db.insert(dataToCar)
+        # print(db)
         if name == "a" and passw == "1":
             print("good")
-            return render_template('adminPage.html')
+            return redirect('admin')
         else:
             return render_template("register.html")
     else:
@@ -40,6 +40,9 @@ def get_tasks():
     if request.method == 'POST':
         uname = request.form['comment']
         print(uname)
+        dataToMongo = db.find()
+        for i in dataToMongo:
+            print(i)
     return render_template('adminPage.html')
 
 
