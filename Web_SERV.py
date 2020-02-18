@@ -1,7 +1,6 @@
 from flask import Flask, escape, request, render_template, jsonify, url_for, redirect
 import random
 import json
-from flask_socketio import SocketIO, send, emit
 from flask_pymongo import PyMongo
 
 
@@ -40,9 +39,11 @@ def get_tasks():
     if request.method == 'POST':
         uname = request.form['comment']
         print(uname)
-        dataToMongo = db.find()
+        dataToMongo = db.find({'_id':int(uname)})
+        print(dataToMongo)
         for i in dataToMongo:
             print(i)
+            return render_template('task.html', employee = i)
     return render_template('adminPage.html')
 
 

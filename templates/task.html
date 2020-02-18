@@ -5,6 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-
+<ul>
+{% for key in employee.items() %}
+<li>{{ key }} : {{ employee[key] }}</li>
+{% endfor %}
+</ul>
 </body>
 </html>
