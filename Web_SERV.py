@@ -9,12 +9,9 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/myDatabase"
 mongo = PyMongo(app)
 db = mongo.db.data
 
-dataToCar = good_car = {
-    "id":1,
-    "Бак": "Исправен",
-    "Номер машины": "1",
-    "Неисправности": "Невыявленно"
-}
+dataToCar = {"_id":4,"data":['123','Исправен','В норме', 'Исправны', 'дата последнего осмотра 14.01.2020']}
+
+
 
 @app.route("/", methods = ['GET', 'POST'])
 def index():
@@ -40,10 +37,10 @@ def get_tasks():
         uname = request.form['comment']
         print(uname)
         dataToMongo = db.find({'_id':int(uname)})
-        print(dataToMongo)
         for i in dataToMongo:
-            print(i)
-            return render_template('task.html', employee = i)
+            print(i.get("data"))
+            i = i.get("data")
+            return render_template('pricing.html', employee = i)
     return render_template('adminPage.html')
 
 
