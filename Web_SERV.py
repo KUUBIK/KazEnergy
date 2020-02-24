@@ -45,6 +45,11 @@ def get_tasks():
 
 
 
+@app.route('/sec', methods=['GET', 'POST'])
+def sec():
+    return render_template('sec.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
